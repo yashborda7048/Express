@@ -39,4 +39,8 @@ app.get("/contact", (req, res) => {
   res.status(200).send("Hello this is contact page!");
 });
 
+app.get("*", (req, res) => {
+  res.status(404).send("Page is not found!!");
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
