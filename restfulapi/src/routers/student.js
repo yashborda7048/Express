@@ -2,7 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const Student = require("../models/students");
 
-// get the data of registered Students
+// get the data of registered Students Details
 router.get("/students", async (req, res) => {
   try {
     const studentData = await Student.find();
@@ -27,7 +27,7 @@ router.get("/students/:id", async (req, res) => {
   }
 });
 
-// create a new students
+// create a new Students
 router.post("/students", async (req, res) => {
   try {
     const user = new Student(req.body);
