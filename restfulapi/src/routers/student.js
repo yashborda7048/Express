@@ -2,6 +2,18 @@ const express = require("express");
 const router = new express.Router();
 const Student = require("../models/students");
 
+// create a new Students
+router.post("/students", async (req, res) => {
+  try {
+    const user = new Student(req.body);
+    const createUser = await user.save();
+    res.status(201).send(createUser);
+  } catch (e) {
+    console.log(e, "error");
+    res.status(400).send(e);
+  }
+});
+
 // get the data of registered Students Details
 router.get("/students", async (req, res) => {
   try {
@@ -23,18 +35,6 @@ router.get("/students/:id", async (req, res) => {
       res.status(201).send(studentData);
     }
   } catch (e) {
-    res.status(400).send(e);
-  }
-});
-
-// create a new Students
-router.post("/students", async (req, res) => {
-  try {
-    const user = new Student(req.body);
-    const createUser = await user.save();
-    res.status(201).send(createUser);
-  } catch (e) {
-    console.log(e, "error");
     res.status(400).send(e);
   }
 });
